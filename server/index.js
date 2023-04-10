@@ -2,6 +2,7 @@
 const express =require('express');
 const app=express();
 const cors =require('cors');
+const mongoose=require('mongoose');
 // configure .env file so that server.js can decode the env variables
 require('dotenv').config();
 //importing the dbconfig file
@@ -20,19 +21,21 @@ app.use('/api/users',userRoute);
 app.use('/api/songs',songsRoute);
 app.use("/api/admin", adminRoute);
 
-const PORT=5000;
+const PORT=process.env.PORT || 6001;
 // app.get('/',(req,res)=>{
 //     res.send('Hello world');
 // })
 
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "client/build")));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "client/build", "index.html"));
-    });
-  }
-app.listen(PORT,()=>{
-    console.log(`Nodejs Server is running on port:${PORT}`)
-})
+
+mongoose.set("strictQuery" , true);
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+  })
+  .catch((error) => console.log(`${error} did not connect`));
 
