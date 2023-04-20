@@ -1,6 +1,8 @@
 #MUSIC_WORLD
 Live project link -- https://music-world.onrender.com
 
-#Designed and developed a React MERN Application with CRUD functionalities on playlist segment and only admin will have access to add the song.
-#Built front-end with React.js and Tailwind css,backend with Node.js and Express.js and used MongoDB and Cloudinary as database.
-#The MVC architecture pattern was used to keep data and functionality distinct.
+• Developed a music player app using the MERN stack, Multer, Cloudinary, and Tailwind CSS.
+• Implemented key features like playlist management and audio controls such as play, pause, next/previous song, shuffle,
+forward, and volume controls.
+• Created an admin panel that allows for full app management, including adding and editing songs and uploading files.
+• Uploaded and hosted the app on Render.
